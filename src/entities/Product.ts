@@ -10,6 +10,9 @@ export class Product {
     image_path: string;
 
     @Column()
+    title: string;
+
+    @Column()
     price: number;
 
     @Column()
