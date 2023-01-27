@@ -13,7 +13,8 @@ export class GetProductController {
 
     async handle(req: Request, res: Response) {
         const { id } = req.params;
-        const product = await this.service.execute({ id });
-        return res.json({product});
+        const { select } = req.body;
+        const product = await this.service.execute({ id, select });
+        return res.json(product);
     }
 }
