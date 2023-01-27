@@ -1,4 +1,4 @@
-import AppDataSource from "../../../../ormconfig";
+import AppDataSource from "../../../ormconfig";
 import { Product } from "../../../entities/Product";
 
 export const productsRepository = AppDataSource.getRepository(Product).extend({
