@@ -1,5 +1,6 @@
 import AppDataSource from "../../../ormconfig";
 import { Product } from "../../../entities/Product";
+import { ISelectOptions } from "../../../services/products/GetProduct/GetProductDTO";
 
 export const productsRepository = AppDataSource.getRepository(Product).extend({
     async findByTitle(title: string) {
@@ -12,8 +13,11 @@ export const productsRepository = AppDataSource.getRepository(Product).extend({
         return products;
     },
 
-    async findById(id: string) {
-        const product = await this.findOneBy({ id });
+    async findById(id: string, take?: ISelectOptions) {
+        const product = await this.findOne({ 
+            where: { id },
+            select: take
+         });
         return product;
     }
 });
