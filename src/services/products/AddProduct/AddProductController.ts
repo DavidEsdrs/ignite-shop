@@ -12,8 +12,8 @@ export class AddProductController {
     ) {}
 
     async handle(req: Request, res: Response) {
-        const { title, price, description, tags } = req.body;
-        const product = await this.service.execute({ title, price, description, tags });
+        const { title, price, description } = req.body;
+        const product = await this.service.execute({ title, price, description });
         return res.json({ product });
     }
 }

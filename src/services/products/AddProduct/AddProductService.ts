@@ -11,7 +11,10 @@ export class AddProductService {
         if(productAlreadyExists) {
             throw new Error("The given product.title already exists!");
         }
-        const product = this.productsRepository.create(args);
+        const product = this.productsRepository.create({
+            ...args,
+            image_path: "DEFAULT"
+        });
         await this.productsRepository.save(product);
         return product;
     }
