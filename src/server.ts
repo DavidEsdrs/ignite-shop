@@ -11,4 +11,6 @@ server.use(express.json());
 
 server.use(router);
 
-server.listen(process.env.SERVER_PORT, () => console.log("running..."));
+const port = process.env.PORT || 5555;
+
+server.listen(port, () => console.log("running..."));
