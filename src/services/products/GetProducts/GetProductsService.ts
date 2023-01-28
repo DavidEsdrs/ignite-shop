@@ -1,13 +1,13 @@
 import { IProductsRepository } from "../../../repositories/IProductsRepository";
-import { GetProductsDTO } from "./GetProductsDTO";
+import { IGetProductsDTO } from "./GetProductsDTO";
 
 export class GetProductsService {
     constructor(
         private productsRepository: IProductsRepository
     ) {}
 
-    async execute(args: GetProductsDTO) {
-        const products = await this.productsRepository.getProducts({ take: args.take });
+    async execute({ select, take }: IGetProductsDTO) {
+        const products = await this.productsRepository.getProducts({ take, select });
         return products;
     }
 }
