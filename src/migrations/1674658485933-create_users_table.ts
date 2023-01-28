@@ -22,7 +22,7 @@ export class createUsersTable1674658485933 implements MigrationInterface {
                 },
                 {
                     name: "price",
-                    type: "integer"
+                    type: "real"
                 },
                 {
                     name: "description",
