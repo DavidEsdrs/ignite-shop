@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { validateProduct } from "./services/products/AddProduct/AddProduct.middleware";
 import { buildAddProduct } from "./services/products/AddProduct/buildAddProductService";
 import { buildGetProduct } from "./services/products/GetProduct/buildGetProduct";
 import { validateSelectOptions } from "./services/products/GetProduct/GetProduct.middleware";
@@ -8,7 +9,7 @@ import { buildCreateUser } from "./services/users/CreateUser/buildCreateUser";
 const router = Router();
 
 // Products
-router.post("/products", (req, res) => buildAddProduct().handle(req, res));
+router.post("/products", validateProduct, (req, res) => buildAddProduct().handle(req, res));
 
 router.get("/products/all", (req, res) => buildGetProducts().handle(req, res));
 

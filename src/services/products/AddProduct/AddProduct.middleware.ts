@@ -4,9 +4,22 @@ import { Request } from "express";
 import Joi from "joi"
 
 const schema = Joi.object({
+    title: Joi.string()
+        .min(3)
+        .max(30)
+        .required(),
+    
+    price: Joi.number()
+        .greater(0)
+        .required(),
+    
+    description: Joi.string()
+        .min(3)
+        .max(150)
+        .optional()
 });
 
-const validateBook = (req: Request, res: Response, next: NextFunction) => {
+export const validateProduct = (req: Request, res: Response, next: NextFunction) => {
     const { error } = schema.validate(req.body);
 
     if(error) {
@@ -15,5 +28,3 @@ const validateBook = (req: Request, res: Response, next: NextFunction) => {
 
     next();
 }
-
-export default validateBook;
