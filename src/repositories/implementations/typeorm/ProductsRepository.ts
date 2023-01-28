@@ -13,11 +13,8 @@ export const productsRepository = AppDataSource.getRepository(Product).extend({
         return products;
     },
 
-    async findById(id: string, take?: ISelectOptions) {
-        const product = await this.findOne({ 
-            where: { id },
-            select: take
-         });
+    async findById(id: string, select?: ISelectOptions) {
+        const product = await this.findOne({ where: { id }, select });
         return product;
     }
 });
