@@ -29,7 +29,7 @@
     "dev": "set NODE_ENV=dev&& ts-node-dev src/server.ts",
     "typeorm": "npx typeorm-ts-node-common-js",
     "migration:create": "set NODE_ENV=dev&& node --require ts-node/register ./node_modules/typeorm/cli.js migration:create",
-    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ormconfig.ts",
+    "migration:run": "set NODE_ENV=dev&& npx typeorm-ts-node-commonjs migration:run -d ./src/ormconfig.ts",
     "migration:revert": "set NODE_ENV=dev&&node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert",
     "build": "set NODE_ENV=production&& tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata"
   }
