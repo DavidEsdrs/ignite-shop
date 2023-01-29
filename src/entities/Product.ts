@@ -12,7 +12,7 @@ export class Product {
     @Column()
     title: string;
 
-    @Column()
+    @Column({ type: "real" })
     price: number;
 
     @Column()
