@@ -7,4 +7,5 @@ export interface IProductsRepository {
     save(product: Product): Promise<void>;
     getProducts(args?: { select?: ISelectOptions, take?: number }): Promise<Product[]>;
     findById(id: string, select?: ISelectOptions): Promise<Product>;
+    removeProductById(id: string): Promise<void>;
 }

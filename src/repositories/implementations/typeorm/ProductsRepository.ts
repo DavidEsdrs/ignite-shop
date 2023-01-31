@@ -29,5 +29,14 @@ export const productsRepository = AppDataSource.getRepository(Product).extend({
             } : undefined
         });
         return product;
+    },
+    
+    async removeProductById(id: string) {
+        await this
+            .createQueryBuilder("products")
+            .delete()
+            .from(Product)
+            .where("id = :id", { id })
+            .execute();
     }
 });
