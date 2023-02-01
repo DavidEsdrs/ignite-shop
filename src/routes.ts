@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { ensureAuthenticatedUser } from "./middlewares/ensureAuthenticatedUser";
 import { validateQueryOptions } from "./middlewares/ValidateQueryOptions.middleware";
 import { validateProduct } from "./services/products/AddProduct/AddProduct.middleware";
 import { buildAddProduct } from "./services/products/AddProduct/buildAddProductService";
@@ -14,7 +15,7 @@ import { buildLoginService } from "./services/users/LoginUser/buildLoginService"
 const router = Router();
 
 // Products
-router.post("/products", validateProduct, (req, res) => buildAddProduct().handle(req, res));
+router.post("/products", ensureAuthenticatedUser, validateProduct, (req, res) => buildAddProduct().handle(req, res));
 
 router.delete("/products/:id", (req, res) => buildRemoveProduct().handle(req, res));
 
