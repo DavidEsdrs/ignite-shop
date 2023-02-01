@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { ResponseEntity } from "../../../api/ResponseEntity";
+import { Product } from "../../../entities/Product";
 import { IEditProductDTO } from "./EditProductDTO";
 
 interface IEditProductService {
-    execute(args: IEditProductDTO): Promise<ResponseEntity>;
+    execute(args: IEditProductDTO): Promise<ResponseEntity<Product>>;
 }
 
 export class EditProductController {
