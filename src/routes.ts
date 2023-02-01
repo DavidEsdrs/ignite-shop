@@ -9,6 +9,7 @@ import { validateSelectOptions } from "./services/products/GetProduct/GetProduct
 import { buildGetProducts } from "./services/products/GetProducts/buildGetProducts";
 import { buildRemoveProduct } from "./services/products/RemoveProduct/buildRemoveProduct";
 import { buildCreateUser } from "./services/users/CreateUser/buildCreateUser";
+import { buildLoginService } from "./services/users/LoginUser/buildLoginService";
 
 const router = Router();
 
@@ -25,5 +26,7 @@ router.put("/products/:id", validatePartialProduct, (req, res) => buildEditProdu
 
 // Users
 router.post("/signup", (req, res) => buildCreateUser().handle(req, res));
+
+router.post("/login", (req, res) => buildLoginService().handle(req, res));
 
 export default router;
