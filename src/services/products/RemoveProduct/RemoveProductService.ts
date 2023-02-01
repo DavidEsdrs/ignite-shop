@@ -1,4 +1,5 @@
 import { ResponseEntity } from "../../../api/ResponseEntity";
+import { Product } from "../../../entities/Product";
 import { IProductsRepository } from "../../../repositories/IProductsRepository";
 import { IRemoveProductDTO } from "./RemoveProductDTO";
 
@@ -7,14 +8,15 @@ export class RemoveProductService {
         private productsRepository: IProductsRepository
     ) {}
 
-    async execute({ id }: IRemoveProductDTO): Promise<ResponseEntity> {
+    async execute({ id }: IRemoveProductDTO): Promise<ResponseEntity<Product>> {
         try {
             await this.productsRepository.removeProductById(id);
 
             return {
                 message: `Product ${id} removed!`,
                 status: 200,
-                successful: true
+                successful: true,
+                body: undefined
             }
         }
         
@@ -22,7 +24,8 @@ export class RemoveProductService {
             return {
                 message: `Product ${id} wasn't removed!`,
                 status: 400,
-                successful: false
+                successful: false,
+                body: undefined
             }
         }
     }

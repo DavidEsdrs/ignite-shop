@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { ResponseEntity } from "../../../api/ResponseEntity";
+import { Product } from "../../../entities/Product";
 import { IRemoveProductDTO } from "./RemoveProductDTO";
 
 interface IRemoveProductService {
-    execute(args: IRemoveProductDTO): Promise<ResponseEntity>;
+    execute(args: IRemoveProductDTO): Promise<ResponseEntity<Product>>;
 }
 
 export class RemoveProductController {
