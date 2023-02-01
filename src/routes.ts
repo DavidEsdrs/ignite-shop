@@ -2,6 +2,8 @@ import { Router } from "express";
 import { validateQueryOptions } from "./middlewares/ValidateQueryOptions.middleware";
 import { validateProduct } from "./services/products/AddProduct/AddProduct.middleware";
 import { buildAddProduct } from "./services/products/AddProduct/buildAddProductService";
+import { buildEditProduct } from "./services/products/EditProduct/buildEditProduct";
+import { validatePartialProduct } from "./services/products/EditProduct/EditProduct.middleware";
 import { buildGetProduct } from "./services/products/GetProduct/buildGetProduct";
 import { validateSelectOptions } from "./services/products/GetProduct/GetProduct.middleware";
 import { buildGetProducts } from "./services/products/GetProducts/buildGetProducts";
@@ -18,6 +20,8 @@ router.delete("/products/:id", (req, res) => buildRemoveProduct().handle(req, re
 router.get("/products/all", validateQueryOptions, (req, res) => buildGetProducts().handle(req, res));
 
 router.get("/products/:id", validateSelectOptions, (req, res) => buildGetProduct().handle(req, res));
+
+router.put("/products/:id", validatePartialProduct, (req, res) => buildEditProduct().handle(req, res));
 
 // Users
 router.post("/signup", (req, res) => buildCreateUser().handle(req, res));
