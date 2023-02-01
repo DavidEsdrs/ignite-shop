@@ -24,7 +24,7 @@ O passo a passo à seguir serve no caso de se você quiser testar a api rodando 
 
 1. Crie uma pasta no seu computador para clonar o repositório
 
-2. Com a pasta criado, execute o seguinte comando:
+2. Execute o seguinte comando com o terminal aberta na pasta:
 ```console
 git clone https://github.com/DavidEsdrs/ignite-shop.git
 ```
@@ -58,7 +58,7 @@ TYPEORM_DATABASE="src/database/data/database.db"
 ```console
 npm run dev
 ```
-- Caso você utilize o `npm`
+- Caso você utilize o `yarn`
 ```console
 yarn dev
 ```
