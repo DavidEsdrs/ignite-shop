@@ -2,6 +2,7 @@ import AppDataSource from "../../../ormconfig";
 import { Product } from "../../../entities/Product";
 import { ISelectOptions } from "../../../services/products/GetProduct/GetProductDTO";
 import { IProductsRepository } from "../../IProductsRepository";
+import { PartialProduct } from "../../../services/products/EditProduct/EditProductDTO";
 
 export const productsRepository = AppDataSource.getRepository(Product).extend({
     async findByTitle(title: string) {
@@ -38,5 +39,9 @@ export const productsRepository = AppDataSource.getRepository(Product).extend({
             .from(Product)
             .where("id = :id", { id })
             .execute();
+    },
+
+    async editProduct(id: string, partial_product: PartialProduct) {
+        await this.save({ id, ...partial_product })
     }
 });
