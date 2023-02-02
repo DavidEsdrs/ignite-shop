@@ -4,6 +4,7 @@ import express from "express";
 import dotenv from "dotenv";
 import router from "./routes";
 import cors from "cors";
+import { errorHandler } from "./api/ErrorHandler";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const server = express();
 
 server.use(express.json());
 server.use(cors());
+server.use(errorHandler);
 server.use(router);
 
 const port = process.env.PORT || 5555;
