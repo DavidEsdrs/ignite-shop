@@ -13,3 +13,9 @@ export class EmailAlreadyTakenError extends APIErrors {
         super("The given email is already taken!", 400);
     }
 }
+
+export class InvalidQueryOptionsError extends APIErrors {
+    constructor() {
+        super("Invalid query options given!", 422)
+    }
+}
