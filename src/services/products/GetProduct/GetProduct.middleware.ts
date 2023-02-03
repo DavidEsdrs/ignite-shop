@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
+import { InvalidRequestBodyError } from "../../../api/APIErrors";
 
 const schema = Joi.object({
     select: Joi.object({
@@ -33,11 +34,7 @@ const schema = Joi.object({
 export const validateSelectOptions = (req: Request, res: Response, next: NextFunction) => {
     const { error } = schema.validate(req.body);
     if(error) {
-        return res.status(422).json({ 
-            code: 422,
-            message: "Unprocessable entity!",
-            successful: false
-        });
+        throw new InvalidRequestBodyError(error.message);
     }
     next();
 }

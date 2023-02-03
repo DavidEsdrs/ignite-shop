@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
+import { InvalidRequestBodyError } from "../../../api/APIErrors";
 
 const schema = Joi.object({
     partial_product: Joi.object({
@@ -23,7 +24,7 @@ const schema = Joi.object({
 export const validatePartialProduct = (req: Request, res: Response, next: NextFunction) => {
     const { error } = schema.validate(req.body);
     if(error) {
-        return res.status(422).json({ error: "The given body is invalid!", msg: error.details[0].message });
+        throw new InvalidRequestBodyError(error.message);
     }
     next();
 }
