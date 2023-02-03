@@ -19,3 +19,9 @@ export class InvalidQueryOptionsError extends APIErrors {
         super("Invalid query options given!", 422)
     }
 }
+
+export class InvalidCredentialsError extends APIErrors {
+    constructor() {
+        super("Invalid credentials!", 422);
+    }
+}
