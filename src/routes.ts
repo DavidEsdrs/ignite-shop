@@ -12,6 +12,7 @@ import { buildGetProducts } from "./services/products/GetProducts/buildGetProduc
 import { buildRemoveProduct } from "./services/products/RemoveProduct/buildRemoveProduct";
 import { buildCreateUser } from "./services/users/CreateUser/buildCreateUser";
 import { buildLoginService } from "./services/users/LoginUser/buildLoginService";
+import { validateLoginUser } from "./services/users/LoginUser/LoginUser.middleware";
 
 const router = Router();
 
@@ -29,6 +30,6 @@ router.put("/products/:id", ensureAuthenticatedUser, ensureAdmin, validatePartia
 // Users
 router.post("/signup", (req, res) => buildCreateUser().handle(req, res));
 
-router.post("/login", (req, res) => buildLoginService().handle(req, res));
+router.post("/login", validateLoginUser, (req, res) => buildLoginService().handle(req, res));
 
 export default router;
