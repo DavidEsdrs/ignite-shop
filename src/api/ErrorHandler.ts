@@ -3,13 +3,11 @@ import { APIErrors } from "./APIErrors";
 
 export const errorHandler = async (error: APIErrors, req: Request, res: Response, next: NextFunction) => {
     if(error) {
-        return res.status(error.status).json({ 
+        return res.status(error.status || 400).json({ 
             error: {
-            message: error.message
-        }});
+                message: error.message
+            }
+        });
     }
-
-    else {
-        return next();
-    }
+    return next();
 }
