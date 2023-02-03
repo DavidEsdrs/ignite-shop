@@ -25,3 +25,9 @@ export class InvalidCredentialsError extends APIErrors {
         super("Invalid credentials!", 422);
     }
 }
+
+export class InvalidRequestBodyError extends APIErrors {
+    constructor() {
+        super("The request body is invalid!", 422);
+    }
+}
