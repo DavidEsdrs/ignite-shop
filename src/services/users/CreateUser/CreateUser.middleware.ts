@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 import { InvalidRequestBodyError } from "../../../api/APIErrors";
-
+    
 const schema = Joi.object({
     username: Joi.string()
         .min(3)
@@ -26,7 +26,7 @@ const schema = Joi.object({
 export const validateUser = (req: Request, res: Response, next: NextFunction) => {
     const { error } = schema.validate(req.body);
     if(error) {
-        throw new InvalidRequestBodyError();
+        throw new InvalidRequestBodyError(error.message);
     }
-    next();
+    return next();
 }
