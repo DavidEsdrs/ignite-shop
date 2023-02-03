@@ -11,6 +11,7 @@ import { validateSelectOptions } from "./services/products/GetProduct/GetProduct
 import { buildGetProducts } from "./services/products/GetProducts/buildGetProducts";
 import { buildRemoveProduct } from "./services/products/RemoveProduct/buildRemoveProduct";
 import { buildCreateUser } from "./services/users/CreateUser/buildCreateUser";
+import { validateUser } from "./services/users/CreateUser/CreateUser.middleware";
 import { buildLoginService } from "./services/users/LoginUser/buildLoginService";
 import { validateLoginUser } from "./services/users/LoginUser/LoginUser.middleware";
 
@@ -28,7 +29,7 @@ router.get("/products/:id", validateSelectOptions, (req, res) => buildGetProduct
 router.put("/products/:id", ensureAuthenticatedUser, ensureAdmin, validatePartialProduct, (req, res) => buildEditProduct().handle(req, res));
 
 // Users
-router.post("/signup", (req, res) => buildCreateUser().handle(req, res));
+router.post("/signup", validateUser, (req, res) => buildCreateUser().handle(req, res));
 
 router.post("/login", validateLoginUser, (req, res) => buildLoginService().handle(req, res));
 
