@@ -16,15 +16,15 @@ import { buildLoginService } from "./services/users/LoginUser/buildLoginService"
 const router = Router();
 
 // Products
-router.post("/products", ensureAdmin, ensureAuthenticatedUser, validateProduct, (req, res) => buildAddProduct().handle(req, res));
+router.post("/products", ensureAuthenticatedUser, ensureAdmin, validateProduct, (req, res) => buildAddProduct().handle(req, res));
 
-router.delete("/products/:id", ensureAdmin, ensureAuthenticatedUser, (req, res) => buildRemoveProduct().handle(req, res));
+router.delete("/products/:id", ensureAuthenticatedUser, ensureAdmin, (req, res) => buildRemoveProduct().handle(req, res));
 
 router.get("/products/all", validateQueryOptions, (req, res) => buildGetProducts().handle(req, res));
 
 router.get("/products/:id", validateSelectOptions, (req, res) => buildGetProduct().handle(req, res));
 
-router.put("/products/:id", ensureAdmin, ensureAuthenticatedUser, validatePartialProduct, (req, res) => buildEditProduct().handle(req, res));
+router.put("/products/:id", ensureAuthenticatedUser, ensureAdmin, validatePartialProduct, (req, res) => buildEditProduct().handle(req, res));
 
 // Users
 router.post("/signup", (req, res) => buildCreateUser().handle(req, res));
