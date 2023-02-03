@@ -12,8 +12,8 @@ const server = express();
 
 server.use(express.json());
 server.use(cors());
-server.use(errorHandler);
 server.use(router);
+server.use(errorHandler);
 
 const port = process.env.PORT || 5555;
 
