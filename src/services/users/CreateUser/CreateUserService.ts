@@ -10,7 +10,7 @@ export class CreateUserService {
         private usersRepository: IUsersRepository
     ) {}
 
-    async execute({ username, email, password }: ICreateUserDTO) {
+    async execute({ username, email, password, admin }: ICreateUserDTO) {
         const userEmail = await this.usersRepository.findByEmail(email);
 
         if(userEmail) {
@@ -19,7 +19,7 @@ export class CreateUserService {
 
         const encryptedPassword = await hash(password);
 
-        const user = this.usersRepository.create({ username, email, password: encryptedPassword });
+        const user = this.usersRepository.create({ username, email, password: encryptedPassword, admin });
 
         await this.usersRepository.save(user);
 
