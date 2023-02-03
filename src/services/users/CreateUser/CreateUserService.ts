@@ -1,5 +1,6 @@
 import { hash } from "argon2";
 import { instanceToPlain } from "class-transformer";
+import { EmailAlreadyTakenError } from "../../../api/APIErrors";
 import { User } from "../../../entities/User";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { ICreateUserDTO } from "./CreateUserDTO";
@@ -13,7 +14,7 @@ export class CreateUserService {
         const userEmail = await this.usersRepository.findByEmail(email);
 
         if(userEmail) {
-            throw new Error("The given email already exists!");
+            throw new EmailAlreadyTakenError();
         }
 
         const encryptedPassword = await hash(password);
