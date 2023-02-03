@@ -13,7 +13,7 @@ export class CreateUserController {
 
     async handle(req: Request, res: Response) {
         const { username, email, password, admin } = req.body;
-        const user = await this.service.execute({ username, email, password, admin });
+        const user = await this.service.execute({ username, email, password });
         return res.json({ user });
     }
 }

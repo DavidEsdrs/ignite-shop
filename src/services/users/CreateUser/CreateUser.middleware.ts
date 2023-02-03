@@ -19,10 +19,7 @@ const schema = Joi.object({
     
     password: Joi.string()
         .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
-        .required(),
-
-    admin: Joi.boolean().default(false)
-
+        .required()
 });
 
 export const validateUser = (req: Request, res: Response, next: NextFunction) => {
